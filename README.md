@@ -31,8 +31,9 @@ A web application for reporting and tracking lost and found items within a commu
 3. Create a `.env` file in the root directory of the project with the following content:
 
 JWT_SECRET=your_secret_key_here 
-MONGO_URI=mongodb+srv:<username>:<password>@cluster0
-mongodb.net/lost_and_found?retryWrites=true&w=majority
+
+MONGO_URI=mongodb+srv:< username>:< password> @cluster0mongodb.net/lost_and_found?retryWrites=true&w=majority
+
 4. Start the server:
 
 This will start the server on `http:/localhost:3000`.
