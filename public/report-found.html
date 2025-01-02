@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report Found Item - Lost & Found</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="css/style_found.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Report a Found Item</h1>
+      <form id="foundForm" enctype="multipart/form-data">
+        <label for="name">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your name"
+          required
+        />
+
+        <label for="contact">Your Contact Info</label>
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          placeholder="Enter your contact number or email"
+          required
+        />
+
+        <label for="title">Item Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="e.g., Black Wallet"
+          required
+        />
+
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="5"
+          placeholder="Provide details about the item..."
+          required
+        ></textarea>
+
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">-- Select Category --</option>
+          <option value="electronics">Electronics</option>
+          <option value="documents">Documents</option>
+          <option value="clothing">Clothing</option>
+          <option value="accessories">Accessories</option>
+          <option value="others">Others</option>
+        </select>
+
+        <label for="date">Date Found</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="location">Location Found</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="e.g., City Center Mall"
+          required
+        />
+
+        <label for="image">Upload Image</label>
+        <input type="file" id="image" name="image" accept="image/*" required />
+
+        <button type="submit">Submit Report</button>
+      </form>
+      <p id="feedback"></p>
+      <a href="index.html" class="back-link">Back to Homepage</a>
+      <!-- Link to external JavaScript file -->
+      <script src="js/found.js"></script>
+    </div>
+  </body>
+</html>

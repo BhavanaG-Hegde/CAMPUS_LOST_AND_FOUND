@@ -1,0 +1,288 @@
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-image: url("/images/ss.png");
+  background-size: cover; /* Ensures background image covers the page */
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Enables scrolling for the page */
+}
+
+/* Centered Content */
+#content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  width: 60%; /* Decrease width to 60% */
+  max-width: 500px; /* Adjust max-width if needed */
+  background: rgba(157, 156, 206, 0.555);
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  margin: 40px auto;
+}
+
+/* Main Heading */
+#main-heading {
+  font-family: "Times New Roman", serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding-top: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form Styling */
+.form-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center; /* Center form fields */
+  margin-bottom: 30px;
+}
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-container i {
+  position: absolute;
+  left: 10px;
+  font-size: 1.2rem; /* Adjust the size of the icon */
+}
+#search-keyword {
+  padding: 20px;
+  padding-left: 35px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  width: 250px; /* Decreased width */
+}
+#search-category {
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  width: 300px;
+}
+
+#search-category {
+  width: 150px;
+}
+
+#search-button {
+  padding: 13px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  width: 280px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center; /* Centers content inside the button */
+  align-items: center; /* Centers content inside the button */
+  gap: 15px;
+  margin-top: 20px; /* Adds some space above the button */
+}
+
+#search-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Results Section */
+#results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+/* Each card container */
+.item {
+  width: 300px;
+  background-color: rgba(157, 156, 206, 0.555);
+  border-radius: 10px;
+  padding: 20px;
+  color: #121212;
+  text-align: unset;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.item:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Card image styling */
+.item img {
+  width: 80%;
+  background-color: rgba(255, 255, 255, 0.555);
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+/* Card text styling */
+.item h3 {
+  text-align: center;
+  margin: 10px 0;
+  color: #3c0478e6;
+  font-size: 1.5rem;
+}
+
+.item p {
+  margin: 5px 0;
+  color: #0b0303;
+  line-height: 1.5;
+}
+
+.item p strong {
+  color: #000000;
+  font-weight: bold;
+}
+
+/* Back to Homepage link styling */
+#back-link {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #210341e6;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+#back-link:hover {
+  color: #8e379a;
+  text-decoration: underline;
+}
+
+/* Ensure scrolling for results */
+body,
+#content-container {
+  height: auto; /* Removes fixed height to allow scrolling */
+}
+
+#results {
+  max-height: calc(100vh - 200px); /* Limits height of results area */
+  overflow-y: auto; /* Adds vertical scrolling if necessary */
+}
+
+.result-card p strong {
+  display: inline-block;
+  font-weight: bold;
+  color: #000000; /* Adjust to match your theme */
+}
+
+footer {
+  position: relative;
+  text-align: center;
+  padding: 23px;
+  background-color: #121212;
+  color: #b0b0b0;
+  border-top: 1px solid #333;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+}
+#bottom-element {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #121212; /* Example background color */
+  color: white; /* Text color */
+  text-align: center; /* Center the text */
+  padding: 10px; /* Add some padding */
+}
+#dynamic-content {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+/* Menu Card */
+.menu-card {
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  color: #121212;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.menu-card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.menu-card h3 {
+  margin: 10px 0;
+  color: #3c0478e6;
+  font-size: 1.5rem;
+}
+
+.menu-card p {
+  margin: 5px 0;
+  color: #0b0303;
+  line-height: 1.5;
+}
+
+.menu-card button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  background-color: #32cd32;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.menu-card button:hover {
+  background-color: #2575fc;
+}
+/* Dynamic Content Section */
+#dynamic-content {
+  /* background: linear-gradient(to bottom right, #7f7fb7, #6463b6); Apply the background color */
+  background: rgba(157, 156, 206, 0.7);
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
