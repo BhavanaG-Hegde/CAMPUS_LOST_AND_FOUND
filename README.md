@@ -16,7 +16,6 @@ A web application for reporting and tracking lost and found items within a commu
 - Backend: Node.js, Express
 - Database: MongoDB
 - Authentication: JWT (JSON Web Tokens)
-- Deployment: (Insert your deployment platform here, e.g., Heroku)
 
 ### Prerequisites
 
