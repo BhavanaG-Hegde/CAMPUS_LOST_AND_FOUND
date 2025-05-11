@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../../.env' });
+require("dotenv").config({ path: "../../.env" });
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
@@ -227,7 +227,7 @@ router.post("/login", async (req, res) => {
         username: user.username,
         college: user.college, // Include the college in the token
       },
-      process.env.JWT_SECRET , 
+      process.env.JWT_SECRET,
       { expiresIn: "1h" } // Token expiration time (1 hour)
     );
 
