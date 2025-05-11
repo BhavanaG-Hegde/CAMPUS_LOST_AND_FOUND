@@ -1,58 +1,88 @@
 function fetchLostItems(container) {
-  container.innerHTML = "<p>Loading lost items...</p>";
-
-  const token = localStorage.getItem("token");  // Get token from localStorage
-
+  const token = localStorage.getItem("token");
+  
   if (!token) {
-    container.innerHTML = "<p>Error: You must be logged in to view lost items.</p>";
+    container.innerHTML = `
+      <div class="items-empty">
+        <i class="fas fa-exclamation-triangle items-empty-icon"></i>
+        <h3 class="items-empty-text">You must be logged in to view lost items.</h3>
+        <div>
+          <a href="login.html" class="btn btn-primary">Login</a>
+          <a href="signup.html" class="btn btn-outline">Sign Up</a>
+        </div>
+      </div>
+    `;
     return;
   }
 
   fetch("/api/lost", {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${token}`,  // Send the token in the Authorization header
+      "Authorization": `Bearer ${token}`,
     },
   })
     .then((response) => {
-      console.log("Response Status:", response.status); // Log status
       if (!response.ok) throw new Error(`Failed to load lost items (Status: ${response.status})`);
       return response.json();
     })
     .then((data) => {
-      container.innerHTML = "";
-
       if (data.length === 0) {
-        container.innerHTML = "<p>No lost items found.</p>";
+        container.innerHTML = `
+          <div class="items-empty">
+            <i class="fas fa-search items-empty-icon"></i>
+            <h3 class="items-empty-text">No lost items found.</h3>
+            <a href="report-lost.html" class="btn btn-primary">Report a Lost Item</a>
+          </div>
+        `;
         return;
       }
 
+      // Clear the container
+      container.innerHTML = "";
+      
+      // Create a grid for the items
       data.forEach((item) => {
-        const itemCard = document.createElement("li");
-        itemCard.classList.add("menu-card");
-
         const imageUrl = item.image.startsWith("/uploads")
           ? item.image.replace("/uploads", "")
           : item.image;
 
+        const itemCard = document.createElement("div");
+        itemCard.className = "item-card";
+        
         itemCard.innerHTML = `
-          <div class="card">
-            <figure class="card-banner">
-              <img src="${imageUrl}" alt="${item.title}" style="width: 100%; border-radius: 8px;">
-            </figure>
-            <div>
-              <h3>${item.title}</h3>
-              <p><strong>Contact:</strong> ${item.contact}</p>
-              <p><strong>Location:</strong> ${item.location}</p>
-              <p>${item.description}</p>
+          <div class="item-image">
+            <img src="${imageUrl}" alt="${item.title}" loading="lazy">
+          </div>
+          <div class="item-body">
+            <h3 class="item-title">${item.title}</h3>
+            <span class="item-status item-status-lost">Lost</span>
+            <p class="item-description">${item.description}</p>
+            <div class="item-details">
+              <div class="item-location">
+                <i class="fas fa-map-marker-alt item-icon"></i>
+                <span>${item.location}</span>
+              </div>
+              <div class="item-contact">
+                <i class="fas fa-phone item-icon"></i>
+                <span>${item.contact}</span>
+              </div>
             </div>
           </div>
         `;
+        
         container.appendChild(itemCard);
       });
     })
     .catch((error) => {
-      console.error("Fetch Error:", error.message); // Log detailed error
-    container.innerHTML = `<p>Error: ${error.message}</p>`;
+      console.error("Fetch Error:", error.message);
+      container.innerHTML = `
+        <div class="items-empty">
+          <i class="fas fa-exclamation-circle items-empty-icon"></i>
+          <h3 class="items-empty-text">Error: ${error.message}</h3>
+          <button class="btn btn-primary" onclick="fetchLostItems(document.getElementById('items-list'))">
+            Try Again
+          </button>
+        </div>
+      `;
     });
 }

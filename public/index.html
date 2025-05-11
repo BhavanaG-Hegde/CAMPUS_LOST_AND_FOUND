@@ -1,227 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lost and Found</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-     
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lost & Found - Reconnect with Your Belongings</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/items.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="index.html" class="navbar-brand">Lost & Found</a>
       
-    </style>
-  </head>
-  <body>
-    <header class="hero">
-      <div class="hero-content">
-        <h1
-          style="
-            font-family: 'Times New Roman', sans-serif;
-            font-size: 5rem;
-            font-weight: bold;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #340467;
-          "
-        >
-          <span>L</span>
-          <span>o</span>
-          <span>s</span>
-          <span>t</span>
-          <span>&nbsp;</span>
-          <span>a</span>
-          <span>n</span>
-          <span>d</span>
-          <span>&nbsp;</span>
-          <span>F</span>
-          <span>o</span>
-          <span>u</span>
-          <span>n</span>
-          <span>d</span>
-        </h1>
-        <br />
-        <br />
-        <br />
-        <br />
-        <p
-          style="
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: rgba(15, 4, 36, 0.568);
-          "
-        >
-          Your one-stop solution to reconnect with your belongings!
-        </p>
-      </div>
-    </header>
-
-    <!-- Profile icon section -->
-    <div class="profile-container">
-      <i class="fa-solid fa-user profile-icon" id="profile-icon"></i>
-      <p class="profile-link" id="profile-link">Profile</p>
-      <div class="profile-dropdown" id="profile-dropdown">
-        <div id="profile-email" style="background-color: #450886; color: white; padding: 10px; margin: 5px 0; border-radius: 5px; height: 25px;">
-          <!-- Profile email content here -->
-        </div>
-        <div id="profile-college" style="background-color: #450886; color: white; padding: 10px; margin: 5px 0; border-radius: 5px; height: 25px;">
-          <!-- Profile college content here -->
-        </div>
-        <a href="login.html" id="logout-btn">Logout</a>
-      </div>
-    </div>
-
-    <div class="hero">
-      <h2 style="font-weight: bold; color: #3c0478e6">
-        Lost it? Found it? Drop it !
-      </h2>
-      <br />
-      <br />
-      <br />
-      <div class="buttons">
-        <button onclick="location.href='report-lost.html';">
-          Report Lost Item
-        </button>
-        <button onclick="location.href='report-found.html';">
-          Report Found Item
-        </button>
-        <button onclick="location.href='search.html';">Search for Items</button>
-      </div>
-    </div>
-
-    <!-- Button Section -->
-    <div class="button-container">
-      <button id="show-lost" class="toggle-button active">Lost Items</button>
-      <button id="show-found" class="toggle-button">Found Items</button>
-    </div>
-
-    <!-- Dynamic Content Section -->
-    <section id="dynamic-content">
-      <ul id="items-list" class="grid-list">
-        <!-- Dynamic items will be loaded here -->
+      <button class="mobile-menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <ul class="navbar-nav">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="search.html" class="nav-link">Search</a></li>
+        <li><a href="report-lost.html" class="nav-link">Report Lost</a></li>
+        <li><a href="report-found.html" class="nav-link">Report Found</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li class="auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li class="auth-link"><a href="signup.html" class="nav-link">Sign Up</a></li>
+        <li class="user-link" style="display: none;">
+          <div class="profile-dropdown" id="profile-dropdown">
+            <a href="#" class="nav-link">
+              <i class="fas fa-user"></i> Profile
+            </a>
+            <div class="profile-menu">
+              <div class="profile-info">
+                <div id="profile-email">Loading...</div>
+                <div id="profile-college" class="mt-2">Loading...</div>
+              </div>
+              <a href="#" id="logout-btn" class="profile-menu-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </div>
+          </div>
+        </li>
       </ul>
-    </section>
+    </div>
+  </nav>
 
-    <footer>
-      <p>
-        &copy; 2024 Lost & Found |
-        <a href="about.html" style="color: rgba(255, 255, 255, 0.693)">About</a>
-        |
-        <a
-          href="privacy_policy.html"
-          style="color: rgba(255, 255, 255, 0.693)"
-          ;
-          >Privacy Policy</a
-        >
-      </p>
-    </footer>
+  <!-- Alert Container -->
+  <div id="alert-container" class="container mt-3"></div>
 
-    <!-- Include the JavaScript files for dynamic fetching -->
-    <script src="js/fetch-lost.js"></script>
-    <script src="js/fetch-found.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const profileIcon = document.getElementById("profile-icon");
-        const profileLink = document.getElementById("profile-link");
-        const profileDropdown = document.getElementById("profile-dropdown");
-        const profileEmail = document.getElementById("profile-email");
-        const profileCollege = document.getElementById("profile-college");
-        const logoutBtn = document.getElementById("logout-btn");
+  <!-- Hero Section -->
+  <header class="header">
+    <div class="container">
+      <h1>Lost & Found</h1>
+      <p>Your one-stop solution to reconnect with your belongings!</p>
+      
+      <div class="d-flex justify-content-center gap-3 mt-4">
+        <a href="report-lost.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-hand-holding"></i> Report Lost Item
+        </a>
+        <a href="report-found.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-hand-holding"></i> Report Found Item
+        </a>
+        <a href="search.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-search"></i> Search Items
+        </a>
+      </div>
+    </div>
+  </header>
 
-        // ✅ Toggle dropdown visibility
-        const toggleProfileDropdown = (event) => {
-          event.stopPropagation(); // Prevent event bubbling
-          profileDropdown.style.display =
-            profileDropdown.style.display === "block" ? "none" : "block";
-        };
 
-        profileIcon.addEventListener("click", toggleProfileDropdown);
-        profileLink.addEventListener("click", toggleProfileDropdown);
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Toggle Buttons -->
+    </br>
+    <div class="items-toggle" style="display: flex; justify-content: center; gap: 10px;">
+  <button id="show-lost" class="btn btn-primary">Lost Items</button>
+  <button id="show-found" class="btn btn-outline">Found Items</button>
+</div>
 
-        document.addEventListener("click", (event) => {
-          if (
-            !profileDropdown.contains(event.target) &&
-            !profileIcon.contains(event.target) &&
-            !profileLink.contains(event.target)
-          ) {
-            profileDropdown.style.display = "none";
-          }
-        });
+<br><br>
 
-        // ✅ Fetch user info from API
-        const token = localStorage.getItem("token");
+<div class="items-header" style="display: flex; justify-content: center; gap: 10px;">
+  <h2 class="items-title" style="display: inline-block;">Recent Items</h2>
+</div>
 
-        if (token) {
-          fetch("/api/user", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Failed to fetch user data");
-              }
-              return response.json();
-            })
-            .then((data) => {
-              if (data.email && data.college) {
-    profileEmail.innerHTML = `<div style="text-align: center;">Email</div><div style="text-align: center;">${data.email}</div>`;
-    profileCollege.innerHTML = `<div style="text-align: center;">College</div><div style="text-align: center;">${data.college}</div>`;
-}
 
-else {
-                profileEmail.textContent = "Email not available";
-                profileCollege.textContent = "College not available";
-              }
-            })
-            .catch((error) => {
-              console.error("Error fetching user data:", error);
-              profileEmail.textContent = "Error fetching user data";
-              profileCollege.textContent = "";
-            });
-        } else {
-          profileEmail.textContent = "Please log in.";
-          profileCollege.textContent = "";
-          logoutBtn.style.display = "none";
-        }
+    
+    <!-- Items List -->
+    <div class="items-grid" id="items-list" style="display: flex; justify-content: center;">
+      <div class="items-loading">
+        <div class="items-spinner"></div>
+        <p>Loading items...</p>
+      </div>
+    </div>
+  </main>
 
-        // ✅ Logout functionality
-        logoutBtn.addEventListener("click", () => {
-          localStorage.removeItem("token"); // Clear token
-          window.location.href = "login.html"; // Redirect to login page
-        });
-      });
+  </br>
+  <br>
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const lostButton = document.getElementById("show-lost");
-        const foundButton = document.getElementById("show-found");
-        const itemsList = document.getElementById("items-list");
+  <!-- Footer -->
+  <footer class="footer" style="padding: 1.5rem 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="text-white mb-2">Lost & Found</h4>
+          <p class="text-gray-400 mb-0">Helping you reconnect with your lost belongings.</p>
+        </div>
+        <div class="col-md-6 text-right">
+          <div class="d-flex justify-content-end gap-4">
+            <a href="about.html">About</a>
+            <a href="privacy_policy.html">Privacy</a>
+            <a href="search.html">Search</a>
+          </div>
+          <p class="mt-2 mb-0">&copy; 2025 Lost & Found. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-        // Function to load lost items
-        function loadLostItems() {
-          lostButton.classList.add("active");
-          foundButton.classList.remove("active");
-          itemsList.innerHTML = "<p>Loading lost items...</p>"; // Loading state
-          fetchLostItems(itemsList); // Call fetchLostItems from fetch-lost.js
-        }
+  <!-- JavaScript -->
+  <script src="js/common.js"></script>
+  <script src="js/fetch-lost.js"></script>
+  <script src="js/fetch-found.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const lostButton = document.getElementById('show-lost');
+      const foundButton = document.getElementById('show-found');
+      const itemsList = document.getElementById('items-list');
 
-        // Function to load found items
-        function loadFoundItems() {
-          foundButton.classList.add("active");
-          lostButton.classList.remove("active");
-          itemsList.innerHTML = "<p>Loading found items...</p>"; // Loading state
-          fetchFoundItems(itemsList); // Call fetchFoundItems from fetch-found.js
-        }
+      // Function to load lost items
+      function loadLostItems() {
+        lostButton.classList.add('btn-primary');
+        lostButton.classList.remove('btn-outline');
+        foundButton.classList.add('btn-outline');
+        foundButton.classList.remove('btn-primary');
+        
+        itemsList.innerHTML = `
+          <div class="items-loading">
+            <div class="items-spinner"></div>
+            <p>Loading lost items...</p>
+          </div>
+        `;
+        
+        fetchLostItems(itemsList);
+      }
 
-        // Add event listeners to the buttons
-        lostButton.addEventListener("click", loadLostItems);
-        foundButton.addEventListener("click", loadFoundItems);
+      // Function to load found items
+      function loadFoundItems() {
+        foundButton.classList.add('btn-primary');
+        foundButton.classList.remove('btn-outline');
+        lostButton.classList.add('btn-outline');
+        lostButton.classList.remove('btn-primary');
+        
+        itemsList.innerHTML = `
+          <div class="items-loading">
+            <div class="items-spinner"></div>
+            <p>Loading found items...</p>
+          </div>
+        `;
+        
+        fetchFoundItems(itemsList);
+      }
 
-        // Load lost items by default on page load
-        loadLostItems();
-      });
-    </script>
-  </body>
+      // Add event listeners to the buttons
+      lostButton.addEventListener('click', loadLostItems);
+      foundButton.addEventListener('click', loadFoundItems);
+
+      // Load lost items by default on page load
+      loadLostItems();
+    });
+  </script>
+</body>
 </html>

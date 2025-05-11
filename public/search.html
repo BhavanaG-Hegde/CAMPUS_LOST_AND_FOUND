@@ -3,72 +3,130 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Items</title>
+    <title>Search Items - Lost & Found</title>
+    <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/items.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <!-- Include Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <h1 id="main-heading" style="margin-top: 30px">
-        Search Lost & Found Items
-      </h1>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="navbar-brand">Lost & Found</a>
+
+        <button class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="navbar-nav">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="search.html" class="nav-link active">Search</a></li>
+          <li><a href="report-lost.html" class="nav-link">Report Lost</a></li>
+          <li><a href="report-found.html" class="nav-link">Report Found</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li class="auth-link">
+            <a href="login.html" class="nav-link">Login</a>
+          </li>
+          <li class="auth-link">
+            <a href="signup.html" class="nav-link">Sign Up</a>
+          </li>
+          <li class="user-link" style="display: none">
+            <div class="profile-dropdown" id="profile-dropdown">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user"></i> Profile
+              </a>
+              <div class="profile-menu">
+                <div class="profile-info">
+                  <div id="profile-email">Loading...</div>
+                  <div id="profile-college" class="mt-2">Loading...</div>
+                </div>
+                <a href="#" id="logout-btn" class="profile-menu-item">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Alert Container -->
+    <div id="alert-container" class="container mt-3"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1>Search Lost & Found Items</h1>
+        <p>
+          Find what you're looking for or help others find their belongings.
+        </p>
+      </div>
     </header>
 
-    <!-- Main Content -->
-    <section id="searchForm">
-      <div id="content-container" style="width: 250px">
-        <!-- Adjusted width to 250px -->
-        <!-- Updated form to include method and action -->
-        <form id="searchForm" method="POST" action="/api/search">
-          <div class="form-group">
-            <!-- Wrap input and icon inside a container -->
-            <div class="search-container">
-              <input
-                type="text"
-                placeholder="   Enter keyword..."
-                id="search-keyword"
-                name="query"
-              />
-              <i
-                class="fa-solid fa-magnifying-glass"
-                style="color: #4f008f"
-              ></i>
-              <!-- Font Awesome Icon -->
-            </div>
-          </div>
-          <button type="submit" id="search-button">Search</button>
+    <!-- Search Form -->
+    <main class="container py-6">
+      <div class="search-container">
+        <form id="searchForm" class="search-form">
+          <input
+            type="text"
+            name="query"
+            id="search-keyword"
+            class="search-input"
+            placeholder="Enter keyword to search..."
+            required
+          />
+          <button type="submit" id="search-button" class="search-button">
+            <i class="fas fa-search search-icon"></i>
+          </button>
         </form>
       </div>
 
-      
-        <ul id="items-list" class="grid-list"></ul>
-        <div id="results">
-          <p style="font-size: 2em">Search Results will Appear Here</p>
+      <!-- Search Results -->
+      <div id="results" class="search-results">
+        <div class="search-empty">
+          <i class="fas fa-search search-empty-icon"></i>
+          <h3 class="search-empty-text">Search Results Will Appear Here</h3>
+          <p>Enter a keyword above to find lost or found items</p>
         </div>
-      
-      <br />
-      <br />
-      <br />
-      <br />
-    </section>
-    </section>
+      </div>
+    </main>
 
-    <footer class="bottom-element">
-      <p>
-        &copy; 2024 Lost & Found
-        <a href="index.html" style="color: rgba(255, 255, 255, 0.693)"
-          >Back-To-Home-Page</a
-        >
-      </p>
+    <!-- Footer -->
+    <footer class="footer" style="padding: 1.5rem 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-white mb-2">Lost & Found</h4>
+            <p class="text-gray-400 mb-0">
+              Helping you reconnect with your lost belongings.
+            </p>
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="d-flex justify-content-end gap-4">
+              <a href="about.html">About</a>
+              <a href="privacy_policy.html">Privacy</a>
+              <a href="search.html">Search</a>
+            </div>
+            <p class="mt-2 mb-0">
+              &copy; 2025 Lost & Found. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
 
-    <!-- Include Fuse.js CDN in your HTML file -->
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <!-- Include the search.js file -->
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
     <script src="js/search.js"></script>
   </body>
 </html>

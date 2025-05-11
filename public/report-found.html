@@ -4,80 +4,233 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Report Found Item - Lost & Found</title>
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="css/style_found.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Report a Found Item</h1>
-      <form id="foundForm" enctype="multipart/form-data">
-        <label for="name">Your Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Enter your name"
-          required
-        />
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="navbar-brand">Lost & Found</a>
 
-        <label for="contact">Your Contact Info</label>
-        <input
-          type="text"
-          id="contact"
-          name="contact"
-          placeholder="Enter your contact number or email"
-          required
-        />
+        <button class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
 
-        <label for="title">Item Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="e.g., Black Wallet"
-          required
-        />
+        <ul class="navbar-nav">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="search.html" class="nav-link">Search</a></li>
+          <li><a href="report-lost.html" class="nav-link">Report Lost</a></li>
+          <li>
+            <a href="report-found.html" class="nav-link active">Report Found</a>
+          </li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li class="auth-link">
+            <a href="login.html" class="nav-link">Login</a>
+          </li>
+          <li class="auth-link">
+            <a href="signup.html" class="nav-link">Sign Up</a>
+          </li>
+          <li class="user-link" style="display: none">
+            <div class="profile-dropdown" id="profile-dropdown">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user"></i> Profile
+              </a>
+              <div class="profile-menu">
+                <div class="profile-info">
+                  <div id="profile-email">Loading...</div>
+                  <div id="profile-college" class="mt-2">Loading...</div>
+                </div>
+                <a href="#" id="logout-btn" class="profile-menu-item">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="5"
-          placeholder="Provide details about the item..."
-          required
-        ></textarea>
+    <!-- Alert Container -->
+    <div id="alert-container" class="container mt-3"></div>
 
-        <label for="category">Category</label>
-        <select id="category" name="category" required>
-          <option value="">-- Select Category --</option>
-          <option value="electronics">Electronics</option>
-          <option value="documents">Documents</option>
-          <option value="clothing">Clothing</option>
-          <option value="accessories">Accessories</option>
-          <option value="others">Others</option>
-        </select>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1>Report a Found Item</h1>
+        <p>Fill out the form below to report an item you've found.</p>
+      </div>
+    </header>
 
-        <label for="date">Date Found</label>
-        <input type="date" id="date" name="date" required />
+    <!-- Report Form -->
+    <main class="container py-6">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card form-card">
+            <div class="card-body">
+              <form id="foundForm" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="name" class="form-label">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-control"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
 
-        <label for="location">Location Found</label>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          placeholder="e.g., City Center Mall"
-          required
-        />
+                <div class="form-group">
+                  <label for="contact" class="form-label"
+                    >Your Contact Info</label
+                  >
+                  <input
+                    type="text"
+                    id="contact"
+                    name="contact"
+                    class="form-control"
+                    placeholder="Enter your contact number or email"
+                    required
+                  />
+                </div>
 
-        <label for="image">Upload Image</label>
-        <input type="file" id="image" name="image" accept="image/*" required />
+                <div class="form-group">
+                  <label for="title" class="form-label">Item Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="form-control"
+                    placeholder="e.g., Black Wallet"
+                    required
+                  />
+                </div>
 
-        <button type="submit">Submit Report</button>
-      </form>
-      <p id="feedback"></p>
-      <a href="index.html" class="back-link">Back to Homepage</a>
-      <!-- Link to external JavaScript file -->
-      <script src="js/found.js"></script>
-    </div>
+                <div class="form-group">
+                  <label for="description" class="form-label"
+                    >Description</label
+                  >
+                  <textarea
+                    id="description"
+                    name="description"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Provide details about the item..."
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="category" class="form-label">Category</label>
+                  <select
+                    id="category"
+                    name="category"
+                    class="form-control"
+                    required
+                  >
+                    <option value="">-- Select Category --</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="documents">Documents</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="others">Others</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="date" class="form-label">Date Found</label>
+                  <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    class="form-control"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="location" class="form-label"
+                    >Location Found</label
+                  >
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    class="form-control"
+                    placeholder="e.g., City Center Mall"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="image" class="form-label">Upload Image</label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    class="form-control"
+                    accept="image/*"
+                    required
+                  />
+                  <small class="form-text"
+                    >Please upload a clear image of the item.</small
+                  >
+                </div>
+
+                <div id="feedback" class="alert" style="display: none"></div>
+
+                <div class="form-actions">
+                  <a href="index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                  </a>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Submit Report
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding: 1.5rem 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-white mb-2">Lost & Found</h4>
+            <p class="text-gray-400 mb-0">
+              Helping you reconnect with your lost belongings.
+            </p>
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="d-flex justify-content-end gap-4">
+              <a href="about.html">About</a>
+              <a href="privacy_policy.html">Privacy</a>
+              <a href="search.html">Search</a>
+            </div>
+            <p class="mt-2 mb-0">
+              &copy; 2025 Lost & Found. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
+    <script src="js/found.js"></script>
   </body>
 </html>

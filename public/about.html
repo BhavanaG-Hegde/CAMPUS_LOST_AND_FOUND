@@ -4,58 +4,170 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - Lost & Found</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/about.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <h1>About Lost & Found</h1>
-      <p>Helping you reunite with your lost belongings.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="navbar-brand">Lost & Found</a>
+
+        <button class="mobile-menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="navbar-nav">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="search.html" class="nav-link">Search</a></li>
+          <li><a href="report-lost.html" class="nav-link">Report Lost</a></li>
+          <li><a href="report-found.html" class="nav-link">Report Found</a></li>
+          <li><a href="about.html" class="nav-link active">About</a></li>
+          <li class="auth-link">
+            <a href="login.html" class="nav-link">Login</a>
+          </li>
+          <li class="auth-link">
+            <a href="signup.html" class="nav-link">Sign Up</a>
+          </li>
+          <li class="user-link" style="display: none">
+            <div class="profile-dropdown" id="profile-dropdown">
+              <a href="#" class="nav-link">
+                <i class="fas fa-user"></i> Profile
+              </a>
+              <div class="profile-menu">
+                <div class="profile-info">
+                  <div id="profile-email">Loading...</div>
+                  <div id="profile-college" class="mt-2">Loading...</div>
+                </div>
+                <a href="#" id="logout-btn" class="profile-menu-item">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Alert Container -->
+    <div id="alert-container" class="container mt-3"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1>About Lost & Found</h1>
+        <p>Helping you reunite with your lost belongings.</p>
+      </div>
     </header>
 
-    <div class="container">
-      <div class="about-section">
-        <h2>Who We Are</h2>
-        <p>
-          Lost & Found is a platform built to connect people with their lost and
-          found items. Whether you've lost something valuable or found an item
-          on campus, we are here to simplify the process and make the experience
-          stress-free. Our mission is to create a trustworthy and accessible
-          platform for everyone.
-        </p>
-      </div>
-
-      <div class="about-section">
-        <h2>What We Do</h2>
-        <p>
-          With our easy-to-use interface, you can report lost items, post found
-          items, and browse through reports to locate your belongings. We also
-          provide weekly insights to show how effective the system is at helping
-          users.
-        </p>
-      </div>
-
-      <div class="features">
-        <div class="feature-card">
-          <h3>Simple Reporting</h3>
+    <!-- Main Content -->
+    <main class="container py-6">
+      <div class="row">
+        <div class="col-md-6 mb-5">
+          <h2>Who We Are</h2>
           <p>
-            Effortlessly report lost or found items with detailed descriptions
-            and images.
+            Lost & Found is a platform built to connect people with their lost
+            and found items. Whether you've lost something valuable or found an
+            item on campus, we are here to simplify the process and make the
+            experience stress-free. Our mission is to create a trustworthy and
+            accessible platform for everyone.
           </p>
         </div>
-        <div class="feature-card">
-          <h3>Powerful Search</h3>
-          <p>Quickly find items using keywords, categories, and filters.</p>
+
+        <div class="col-md-6 mb-5">
+          <h2>What We Do</h2>
+          <p>
+            With our easy-to-use interface, you can report lost items, post
+            found items, and browse through reports to locate your belongings.
+            We also provide weekly insights to show how effective the system is
+            at helping users.
+          </p>
         </div>
-        <div class="feature-card">
-          <h3>Lost and Found Items</h3>
-          <p>Browse reported lost and found items, track their status, and view location details.</p>
-        </div>
-         
       </div>
-    </div>
-    <footer>
-      <p><a href="index.html">Back to Homepage</a> | © 2024 Lost & Found</p>
+
+      <h2 class="text-center mb-5">Our Features</h2>
+
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-clipboard-list fa-3x text-primary mb-3"></i>
+              <h3 class="card-title">Simple Reporting</h3>
+              <p class="card-text">
+                Effortlessly report lost or found items with detailed
+                descriptions and images.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-search fa-3x text-primary mb-3"></i>
+              <h3 class="card-title">Powerful Search</h3>
+              <p class="card-text">
+                Quickly find items using keywords, categories, and filters.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-exchange-alt fa-3x text-primary mb-3"></i>
+              <h3 class="card-title">Lost and Found Items</h3>
+              <p class="card-text">
+                Browse reported lost and found items, track their status, and
+                view location details.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="index.html" class="btn btn-primary btn-lg">
+          <i class="fas fa-home"></i> Back to Homepage
+        </a>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="padding: 1.5rem 0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-white mb-2">Lost & Found</h4>
+            <p class="text-gray-400 mb-0">
+              Helping you reconnect with your lost belongings.
+            </p>
+          </div>
+          <div class="col-md-6 text-right">
+            <div class="d-flex justify-content-end gap-4">
+              <a href="about.html">About</a>
+              <a href="privacy_policy.html">Privacy</a>
+              <a href="search.html">Search</a>
+            </div>
+            <p class="mt-2 mb-0">
+              &copy; 2025 Lost & Found. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
+
+    <!-- JavaScript -->
+    <script src="js/common.js"></script>
   </body>
 </html>

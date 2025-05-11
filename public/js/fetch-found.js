@@ -1,17 +1,30 @@
 function fetchFoundItems(container) {
-  container.innerHTML = "<p>Loading found items...</p>";
-
-  const token = localStorage.getItem("token");  // Get token from localStorage
+  const token = localStorage.getItem("token");
   
   if (!token) {
-    container.innerHTML = "<p>Error: You must be logged in to view found items.</p>";
+    container.innerHTML = `
+  <div style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 2rem;">
+    <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Recent Items</h2>
+    <div class="items-empty" style="text-align: center; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <i class="fas fa-search items-empty-icon" style="font-size: 2rem; color: gray;"></i>
+      <h3 class="items-empty-text" style="margin-top: 1rem;">No lost items found.</h3>
+      <div style="margin-top: 1.5rem;">
+        <a href="report-lost.html" class="btn btn-primary" style="padding: 0.5rem 1rem; background: #6200ea; color: white; border-radius: 6px; text-decoration: none;">Report a Lost Item</a>
+      </div>
+    </div>
+  </div>
+`;
+
+
+
+
     return;
   }
 
   fetch("/api/found", {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${token}`,  // Send the token in the Authorization header
+      "Authorization": `Bearer ${token}`,
     },
   })
     .then((response) => {
@@ -19,38 +32,63 @@ function fetchFoundItems(container) {
       return response.json();
     })
     .then((data) => {
-      container.innerHTML = "";
-
       if (data.length === 0) {
-        container.innerHTML = "<p>No found items found.</p>";
+        container.innerHTML = `
+          <div class="items-empty">
+            <i class="fas fa-search items-empty-icon"></i>
+            <h3 class="items-empty-text">No found items found.</h3>
+            <a href="report-found.html" class="btn btn-primary">Report a Found Item</a>
+          </div>
+        `;
         return;
       }
 
+      // Clear the container
+      container.innerHTML = "";
+      
+      // Create a grid for the items
       data.forEach((item) => {
-        const itemCard = document.createElement("li");
-        itemCard.classList.add("menu-card");
-
         const imageUrl = item.image.startsWith("/uploads")
           ? item.image.replace("/uploads", "")
           : item.image;
 
+        const itemCard = document.createElement("div");
+        itemCard.className = "item-card";
+        
         itemCard.innerHTML = `
-          <div class="card">
-            <figure class="card-banner">
-              <img src="${imageUrl}" alt="${item.title}" style="width: 100%; border-radius: 8px;">
-            </figure>
-            <div>
-              <h3>${item.title}</h3>
-              <p><strong>Contact:</strong> ${item.contact}</p>
-              <p><strong>Location:</strong> ${item.location}</p>
-              <p>${item.description}</p>
+          <div class="item-image">
+            <img src="${imageUrl}" alt="${item.title}" loading="lazy">
+          </div>
+          <div class="item-body">
+            <h3 class="item-title">${item.title}</h3>
+            <span class="item-status item-status-found">Found</span>
+            <p class="item-description">${item.description}</p>
+            <div class="item-details">
+              <div class="item-location">
+                <i class="fas fa-map-marker-alt item-icon"></i>
+                <span>${item.location}</span>
+              </div>
+              <div class="item-contact">
+                <i class="fas fa-phone item-icon"></i>
+                <span>${item.contact}</span>
+              </div>
             </div>
           </div>
         `;
+        
         container.appendChild(itemCard);
       });
     })
     .catch((error) => {
-      container.innerHTML = `<p>Error: ${error.message}</p>`;
+      console.error("Fetch Error:", error.message);
+      container.innerHTML = `
+        <div class="items-empty">
+          <i class="fas fa-exclamation-circle items-empty-icon"></i>
+          <h3 class="items-empty-text">Error: ${error.message}</h3>
+          <button class="btn btn-primary" onclick="fetchFoundItems(document.getElementById('items-list'))">
+            Try Again
+          </button>
+        </div>
+      `;
     });
 }
