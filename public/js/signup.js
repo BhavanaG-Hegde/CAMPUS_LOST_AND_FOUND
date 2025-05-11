@@ -6,27 +6,33 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // Helper functions
+  // Helper function to validate email format
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+    return re.test(String(email).toLowerCase());
   }
 
-  function validatePassword(password) {
-    return password.length >= 6;
-  }
-
+  // Helper function to display alerts
   function showAlert(message, type) {
     const alertDiv = document.createElement("div");
     alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
     alertDiv.innerHTML = `
-      ${message}
+      <span>${message}</span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     `;
-    const container = document.querySelector(".container"); // Or any appropriate container
-    container.insertBefore(alertDiv, signupForm); // Insert before the form
+
+    const container = document.querySelector(".container");
+    if (container) {
+      container.insertBefore(alertDiv, container.firstChild);
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    } else {
+      console.warn("Container element not found. Alert not displayed.");
+    }
   }
 
   signupForm.addEventListener("submit", async function (event) {
@@ -43,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if (!validatePassword(password)) {
+    if (password.length < 6) {
       showAlert("Password must be at least 6 characters long.", "danger");
       return;
     }
@@ -57,10 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitButton = signupForm.querySelector("button[type='submit']");
     const originalButtonText = submitButton.innerHTML;
     submitButton.disabled = true;
-    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing up...';
+    submitButton.innerHTML =
+      '<i class="fas fa-spinner fa-spin"></i> Signing up...';
 
     try {
-      // Send signup request to the backend
+      // Send signup request to backend
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -71,29 +78,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
 
-      if (response.ok) {
-        // Show success message
-        showAlert("Signup successful! Redirecting to the login page...", "success");
-        
-        // Reset form
-        signupForm.reset();
-        
-        // Redirect to login page after delay
-        setTimeout(() => {
-          window.location.href = "login.html";
-        }, 2000);
-      } else {
+      if (!response.ok) {
         throw new Error(data.message || "Signup failed. Please try again.");
       }
+
+      // Show success alert
+      showAlert("Signup successful! Redirecting to login page...", "success");
+
+      // Reset form
+      signupForm.reset();
+
+      // Redirect after delay
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 2000);
     } catch (error) {
       console.error("Signup error:", error);
-      showAlert(error.message || "An error occurred. Please try again later.", "danger");
+      showAlert(
+        error.message || "An error occurred. Please try again later.",
+        "danger"
+      );
     } finally {
-      // Restore button state
+      // Restore button
       submitButton.disabled = false;
       submitButton.innerHTML = originalButtonText;
     }
   });
 
-  // Helper functions are now in common.js
+  // Note: Helper functions should also be available in common.js
 });
