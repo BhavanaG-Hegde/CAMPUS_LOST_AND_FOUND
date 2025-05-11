@@ -3,7 +3,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
-const LostItem = require("../models/LostItem");
+const LostItem = require("../models/lostItem");
 const FoundItem = require("../models/foundItem");
 const User = require("../models/user");
 
